@@ -152,14 +152,18 @@ class DevicePanel(QWidget):
         self._sdk_label.setText(
             str(identity.sdk_version) if identity.sdk_version else "—"
         )
-        self._build_label.setText(identity.build_fingerprint or "—")
+        # Fixed: DeviceIdentity exposes `fingerprint` and `build_id`,
+        # not `build_fingerprint`.
+        build_text = identity.fingerprint or identity.build_id or "—"
+        self._build_label.setText(build_text)
 
         lock_state = getattr(identity.bootloader_state, "value", None)
         if lock_state is None and identity.bootloader_state is not None:
             lock_state = str(identity.bootloader_state)
         self._bootloader_label.setText(lock_state or "—")
 
-        slot = identity.current_slot or identity.slot_suffix
+        # Fixed: DeviceIdentity has no `slot_suffix` attribute.
+        slot = identity.current_slot
         if slot:
             self._slot_label.setText(slot)
         elif identity.slot_support:
