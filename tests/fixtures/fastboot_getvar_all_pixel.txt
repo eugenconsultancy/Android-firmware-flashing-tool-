@@ -1,0 +1,20 @@
+(bootloader) product:panther
+(bootloader) variant:US
+(bootloader) serialno:SER12345678
+(bootloader) current-slot:a
+(bootloader) slot-count:2
+(bootloader) slot-successful:a:yes
+(bootloader) slot-successful:b:no
+(bootloader) unlocked:yes
+(bootloader) partition-type:boot:raw
+(bootloader) partition-type:init_boot:raw
+(bootloader) partition-type:vendor_boot:raw
+(bootloader) partition-type:dtbo:raw
+(bootloader) partition-type:vbmeta:raw
+(bootloader) partition-type:vbmeta_system:raw
+(bootloader) partition-type:super:raw
+(bootloader) partition-type:userdata:raw
+(bootloader) partition-size:boot:0x4000000
+(bootloader) partition-size:super:0x100000000
+OKAY [  0.012s]
+finished. total time: 0.013s

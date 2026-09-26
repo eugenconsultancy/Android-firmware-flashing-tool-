@@ -1,0 +1,10 @@
+(bootloader) product:cheetah
+(bootloader) variant:US
+(bootloader) serialno:SER87654321
+(bootloader) current-slot:a
+(bootloader) slot-count:2
+(bootloader) unlocked:yes
+(bootloader) partition-type:boot:raw
+(bootloader) partition-type:super:raw
+OKAY [  0.010s]
+finished. total time: 0.011s

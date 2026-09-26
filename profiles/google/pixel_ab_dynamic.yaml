@@ -1,0 +1,41 @@
+manufacturer: "Google"
+family: "Pixel"
+codename: null
+model: null
+product: null
+
+architecture:
+  slots: "ab"
+  dynamic_partitions: true
+  logical_partitions: true
+  super_partition: true
+
+firmware:
+  formats:
+    - factory_zip
+    - ota_zip
+    - raw_image
+
+partition_hints:
+  - boot
+  - init_boot
+  - vendor_boot
+  - dtbo
+  - vbmeta
+  - vbmeta_system
+  - super
+  - userdata
+  - bootloader
+  - radio
+
+driver_hints:
+  - "Install Google USB Driver for Windows."
+  - "Use a USB 2.0 port if fastboot is unreliable on USB 3.x."
+
+documentation_links:
+  - "https://developers.google.com/android/images"
+  - "https://developers.google.com/android/ota"
+
+notes:
+  - "Generic Google Pixel A/B dynamic-partition reference profile."
+  - "Specific Pixel models may have additional partitions; runtime info wins."

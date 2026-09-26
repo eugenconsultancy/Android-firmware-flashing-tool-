@@ -1,0 +1,28 @@
+name: Legacy Fastboot
+description: Single-slot fastboot device without A/B or dynamic partitions.
+architecture:
+  slots: none
+  dynamic_partitions: false
+  logical_partitions: false
+capabilities:
+  supports_ab: false
+  supports_fastbootd: false
+  supports_dynamic_partitions: false
+  supports_logical_partitions: false
+  supports_slot_management: false
+  supports_update: true
+  supports_flash: true
+  supports_getvar: true
+partitions:
+  physical:
+    - boot
+    - recovery
+    - system
+    - vendor
+    - userdata
+    - vbmeta
+    - dtbo
+firmware:
+  formats:
+    - raw_image
+    - factory_zip

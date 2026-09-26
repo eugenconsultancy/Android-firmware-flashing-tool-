@@ -1,0 +1,39 @@
+manufacturer: "Samsung"
+family: "Galaxy"
+codename: null
+model: null
+product: null
+
+architecture:
+  slots: "legacy"
+  dynamic_partitions: false
+  logical_partitions: false
+  super_partition: false
+
+firmware:
+  formats:
+    - tar
+    - md5
+    - raw_image
+
+partition_hints:
+  - boot
+  - recovery
+  - system
+  - vendor
+  - userdata
+  - vbmeta
+  - dtbo
+  - modem
+  - radio
+  - bootloader
+
+driver_hints:
+  - "Install Samsung USB Driver for Windows."
+
+documentation_links:
+  - "https://www.samsung.com/us/support/"
+
+notes:
+  - "Samsung firmware is typically Odin-format (tar/tar.md5), not fastboot."
+  - "Runtime information must determine flashing strategy."

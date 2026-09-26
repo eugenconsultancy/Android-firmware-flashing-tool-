@@ -1,0 +1,34 @@
+manufacturer: "Google"
+family: "Pixel"
+codename: "sailfish"
+model: "Pixel"
+product: "sailfish"
+
+architecture:
+  slots: "legacy"
+  dynamic_partitions: false
+  logical_partitions: false
+  super_partition: false
+
+firmware:
+  formats:
+    - factory_zip
+    - raw_image
+
+partition_hints:
+  - boot
+  - recovery
+  - system
+  - vendor
+  - userdata
+  - vbmeta
+  - dtbo
+
+driver_hints:
+  - "Install Google USB Driver for Windows."
+
+documentation_links:
+  - "https://developers.google.com/android/images"
+
+notes:
+  - "Example legacy Pixel profile. Runtime information takes precedence."

@@ -1,0 +1,37 @@
+name: Dynamic Partitions
+description: A/B fastboot device with dynamic (logical) partitions.
+architecture:
+  slots: ab
+  dynamic_partitions: true
+  logical_partitions: true
+capabilities:
+  supports_ab: true
+  supports_fastbootd: true
+  supports_dynamic_partitions: true
+  supports_logical_partitions: true
+  supports_slot_management: true
+  supports_update: true
+  supports_flash: true
+  supports_getvar: true
+partitions:
+  physical:
+    - boot
+    - init_boot
+    - vendor_boot
+    - dtbo
+    - vbmeta
+    - vbmeta_system
+    - super
+    - userdata
+  logical:
+    - system
+    - system_ext
+    - product
+    - vendor
+    - odm
+firmware:
+  formats:
+    - raw_image
+    - factory_zip
+    - ota_zip
+    - super_image

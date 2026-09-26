@@ -1,0 +1,31 @@
+name: A/B Fastboot
+description: A/B fastboot device without dynamic partitions.
+architecture:
+  slots: ab
+  dynamic_partitions: false
+  logical_partitions: false
+capabilities:
+  supports_ab: true
+  supports_fastbootd: true
+  supports_dynamic_partitions: false
+  supports_logical_partitions: false
+  supports_slot_management: true
+  supports_update: true
+  supports_flash: true
+  supports_getvar: true
+partitions:
+  physical:
+    - boot
+    - init_boot
+    - vendor_boot
+    - dtbo
+    - vbmeta
+    - recovery
+    - system
+    - vendor
+    - userdata
+firmware:
+  formats:
+    - raw_image
+    - factory_zip
+    - ota_zip

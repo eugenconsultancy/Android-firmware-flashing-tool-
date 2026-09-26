@@ -1,0 +1,26 @@
+manufacturer: null
+family: "Other"
+codename: null
+model: null
+product: null
+
+architecture:
+  slots: "unknown"
+  dynamic_partitions: null
+  logical_partitions: null
+  super_partition: null
+
+firmware:
+  formats: []
+
+partition_hints: []
+
+driver_hints:
+  - "Install the OEM USB driver for your device."
+
+documentation_links: []
+
+notes:
+  - "This file documents how to add new OEM profiles."
+  - "Place OEM profiles in profiles/<manufacturer>/<name>.yaml."
+  - "Profiles are supplemental. Runtime device information takes precedence."

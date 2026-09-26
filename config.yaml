@@ -1,0 +1,213 @@
+# =============================================================================
+#  Android Flasher — configuration
+# =============================================================================
+#
+#  This file controls every runtime option of the application.
+#
+#  SAFETY FIRST:
+#    By default the application is READ-ONLY. It will detect devices,
+#    analyze firmware, run compatibility, and generate plans, but it
+#    will NOT flash anything.
+#
+#    To enable real flashing you must edit the `safety` section below.
+#    Even then, every destructive operation still passes through:
+#        1. Preflight (device present, serial match, bootloader unlocked,
+#           partition exists, compatibility not blocked)
+#        2. Risk assessment (raises to CRITICAL for AVB disable, erase,
+#           format, or wipe)
+#        3. User confirmation (elevated risk requires the typed phrase FLASH)
+#
+#    The GUI cannot bypass any of those checks.
+# =============================================================================
+
+
+# -----------------------------------------------------------------------------
+# Application metadata
+# -----------------------------------------------------------------------------
+
+application:
+  name: "Android Flasher"
+  version: "2.0.0-phase4"
+  development_mode: false
+
+
+# -----------------------------------------------------------------------------
+# Logging
+# -----------------------------------------------------------------------------
+
+logging:
+  level: "INFO"
+  console: true
+  file: true
+  session_directory: "logs/sessions"
+  error_directory: "logs/errors"
+  max_bytes: 5242880
+  backup_count: 5
+  json_sessions: true
+
+
+# -----------------------------------------------------------------------------
+# Command timeouts (seconds)
+# -----------------------------------------------------------------------------
+
+timeouts:
+  adb: 30
+  fastboot: 60
+  getprop: 20
+  version_check: 15
+  flash: 900
+  verification: 120
+  reboot: 60
+
+
+# -----------------------------------------------------------------------------
+# Platform tools discovery
+# -----------------------------------------------------------------------------
+
+platform_tools:
+  search_paths:
+    - "platform-tools"
+    - "platform-tools/bin"
+    - "platform_tools"
+  executable_names:
+    adb: "adb"
+    fastboot: "fastboot"
+  allow_system_path: true
+  allow_bundled: true
+
+
+# =============================================================================
+# SAFETY — the arm / disarm controls
+# =============================================================================
+#
+#  ARMING THE APPLICATION FOR REAL FLASHING
+#  ----------------------------------------
+#  To permit destructive operations you must set BOTH:
+#
+#      safety.phase1_read_only: false
+#      safety.allow_flash: true
+#
+#  Setting `allow_flash: true` without disabling `phase1_read_only`
+#  keeps the application read-only. This two-key design prevents a
+#  single accidental edit from enabling writes.
+# =============================================================================
+
+safety:
+  # ---- Confirmation and preflight -----------------------------------------
+  require_confirmation: true
+  require_compatibility_check: true
+  require_bootloader_check: true
+  require_hash_verification: true
+
+  # ---- The master read-only switch ----------------------------------------
+  phase1_read_only: true
+
+  # ---- The primary flash permission ---------------------------------------
+  allow_flash: false
+
+  # ---- Additional destructive permissions (all OFF by default) ------------
+  allow_erase: false
+  allow_format: false
+  allow_unlock: false
+  allow_wipe: false
+  allow_set_active: false
+  allow_reboot: true
+
+  # ---- Compatibility gating -----------------------------------------------
+  allow_unknown_compatibility: false
+  allow_likely_compatibility: true
+
+  # ---- Risk gating --------------------------------------------------------
+  max_auto_risk_level: "LOW"
+  require_confirmation_for_medium: true
+  require_confirmation_for_high: true
+  require_confirmation_for_critical: true
+  block_critical: true
+
+  # ---- Transport and capability gating ------------------------------------
+  allow_fastbootd_mode_switch: true
+  allow_ab_slot_change: false
+  require_serial_match: true
+
+  # ---- Execution behaviour ------------------------------------------------
+  cancel_grace_seconds: 3
+  max_output_bytes: 4194304
+
+
+# -----------------------------------------------------------------------------
+# Device polling
+# -----------------------------------------------------------------------------
+
+device:
+  poll_interval_ms: 2000
+  auto_refresh: true
+
+
+# -----------------------------------------------------------------------------
+# Firmware analysis
+# -----------------------------------------------------------------------------
+
+firmware:
+  compute_hashes: true
+  hash_algorithm: "sha256"
+  max_hash_bytes: 0
+  allow_img: true
+  allow_zip: true
+  allow_payload: true
+  allow_sparse: true
+  max_archive_entries: 10000
+  analyze_zip_members: true
+  profiles_root: "profiles"
+
+
+# -----------------------------------------------------------------------------
+# Partition modeling
+# -----------------------------------------------------------------------------
+
+partitions:
+  include_inferred: true
+  warn_on_extra_firmware_partitions: true
+  dynamic_partition_names:
+    - "system"
+    - "system_ext"
+    - "product"
+    - "vendor"
+    - "odm"
+
+
+# -----------------------------------------------------------------------------
+# Flash planning and execution
+# -----------------------------------------------------------------------------
+
+flash:
+  plan_max_steps: 64
+  step_timeout_seconds: 900
+  per_step_output_limit: 65536
+  allow_extraction_for_factory_zip: false
+  factory_zip_extraction_root: "firmware/incoming"
+  allow_fastboot_update: true
+  allow_slot_switch: false
+  allow_avb_disable: false
+  require_integrity_check: true
+  verify_after_each_step: true
+  verify_after_operation: true
+  reboot_after_flash: false
+  preserve_logs: true
+
+
+# -----------------------------------------------------------------------------
+# User interface
+# -----------------------------------------------------------------------------
+#  window_width and window_height must fit within your physical screen.
+#  The application enforces a minimum of 1280 x 720 regardless of these
+#  values, so setting them too small is safe; setting them too large
+#  produces a "Unable to set geometry" warning from the platform.
+
+ui:
+  theme: "dark"
+  window_width: 1400
+  window_height: 880
+  font_size: 10
+  show_advanced: false
+  confirm_on_close: true
+  remember_geometry: true

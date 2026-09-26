@@ -1,0 +1,22 @@
+manufacturer: Google
+family: Pixel 7
+codename: panther
+product: panther
+architecture:
+  slots: ab
+  dynamic_partitions: true
+  logical_partitions: true
+capabilities:
+  supports_ab: true
+  supports_fastbootd: true
+  supports_dynamic_partitions: true
+  supports_logical_partitions: true
+  supports_slot_management: true
+  supports_update: true
+  supports_flash: true
+  supports_getvar: true
+firmware:
+  formats:
+    - factory_zip
+    - ota_zip
+    - raw_image

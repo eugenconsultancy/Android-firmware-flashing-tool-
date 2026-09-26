@@ -1,0 +1,38 @@
+manufacturer: "OnePlus"
+family: "OnePlus"
+codename: null
+model: null
+product: null
+
+architecture:
+  slots: "ab"
+  dynamic_partitions: true
+  logical_partitions: true
+  super_partition: true
+
+firmware:
+  formats:
+    - factory_zip
+    - raw_image
+    - ota_zip
+
+partition_hints:
+  - boot
+  - init_boot
+  - vendor_boot
+  - dtbo
+  - vbmeta
+  - vbmeta_system
+  - super
+  - userdata
+  - modem
+  - radio
+
+driver_hints:
+  - "Install OnePlus USB Driver for Windows."
+
+documentation_links:
+  - "https://www.oneplus.com/support"
+
+notes:
+  - "OnePlus A/B dynamic-partition reference profile."

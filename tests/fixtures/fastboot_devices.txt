@@ -1,0 +1,1 @@
+SER12345678	fastboot
